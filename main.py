@@ -1,16 +1,36 @@
 import numpy as np
 import pandas as pd
+from pandas import DataFrame
+
+data:DataFrame = pd.read_csv("./dataset/random_evals.csv")
 
 
-def fen_to_array(fen: str) -> list[list]:
-    board: list[list] = [
-        [fen],
-    ]
+board: list[str] = [
+    "_","_","_","_","_","_","_","_",
+    "_","_","_","_","_","_","_","_",
+    "_","_","_","_","_","_","_","_",
+    "_","_","_","_","_","_","_","_",
+    "_","_","_","_","_","_","_","_",
+    "_","_","_","_","_","_","_","_",
+    "_","_","_","_","_","_","_","_",
+    "_","_","_","_","_","_","_","_",
+]
+
+def fen_to_array(fen: str) -> list[str]:
+    """
+    replaces blank value ("_") in {board} with values in FEN
+
+    """
+    for letter in fen:
+        # rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR
+        count = 0
+        if type(letter) == int:
+            count += 1
+        elif expression:
+            pass
+
 
     return board
 
 
-ans = fen_to_array("test")
-
-for answer in ans:
-    print(answer)
+print(data.FEN[0])
