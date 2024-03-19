@@ -5,6 +5,16 @@
 
 # data:DataFrame = pd.read_csv("./dataset/random_evals.csv")
 
+# Hyprparameters
+
+dict = {'p':0.05,'n':0.15,'b':0.15,'r':0.25,'q':0.45,'k':1,0:0}
+
+def split_fen(fen:str) -> list[str]:
+    # rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1
+    split_fen = fen.split(" ")
+    return split_fen
+
+
 
 def fen_to_array(fen: str) -> str:
     """
@@ -26,7 +36,7 @@ def fen_to_array(fen: str) -> str:
     return final
 
 
-def split_fen(fen:str) -> list[list]:
+def split_position(fen:str) -> list[list]:
     """
     splits FEN into two lists of strings 
     """
@@ -48,9 +58,8 @@ def split_fen(fen:str) -> list[list]:
             fen_white.append(i)
             fen_black.append(i)
         
-    print(fen_black)
-    print(fen_white)
-    dict = {'p':1,'n':3,'b':3,'r':5,'q':9,'k':20,0:0}
+    # print(fen_black)
+    # print(fen_white)
 
     transformed_black = list(map(dict.get,fen_black))
     transformed_white = list(map(dict.get,fen_white))
@@ -59,19 +68,19 @@ def split_fen(fen:str) -> list[list]:
 
 
 
-test = fen_to_array("r1bqk2r/pp1n2pp/2n1pp2/3pP3/1b1P1P2/3B1N2/PP1B2PP/R2QK1NR")
+test = fen_to_array("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1")
 test_split = split_fen(test)
-print(test)
+print(test_split)
 
-for i in test_split:
-    print(i)
-    print(len(i))
-    print("******************")
-
-
-print(test_split[0])
-print(test_split[1])
-
+# for i in test_split:
+#     print(i)
+#     print(len(i))
+#     print("******************")
+#
+#
+# print(test_split[0])
+# print(test_split[1])
+#
 
 
 
