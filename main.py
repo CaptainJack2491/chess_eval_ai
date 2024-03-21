@@ -9,6 +9,7 @@
 
 dict = {'p':0.05,'n':0.15,'b':0.15,'r':0.25,'q':0.45,'k':1,0:0}
 
+
 def split_fen(fen:str) -> list[str]:
     # rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1
     split_fen = fen.split(" ")
@@ -36,7 +37,7 @@ def fen_to_array(fen: str) -> str:
     return final
 
 
-def split_position(fen:str) -> list[list]:
+def split_array(fen:str) -> list[list]:
     """
     splits FEN into two lists of strings 
     """
@@ -67,24 +68,12 @@ def split_position(fen:str) -> list[list]:
 
 
 
-
-test = fen_to_array("rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1")
-test_split = split_fen(test)
-print(test_split)
-
-# for i in test_split:
-#     print(i)
-#     print(len(i))
-#     print("******************")
-#
-#
-# print(test_split[0])
-# print(test_split[1])
-#
+test_fen = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1"
+fen = split_fen(test_fen)
+position = split_array(fen_to_array(fen[0]))
+if fen[1] == 'b':
+    turn:int = 1
+else:
+    turn = 0
 
 
-
-
-
-
-# print(data.FEN[0])
