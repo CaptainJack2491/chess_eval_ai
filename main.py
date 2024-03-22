@@ -71,9 +71,14 @@ def split_array(fen:str) -> list[list]:
 test_fen = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1"
 fen = split_fen(test_fen)
 position = split_array(fen_to_array(fen[0]))
+
+turn:int = 0
 if fen[1] == 'b':
-    turn:int = 1
-else:
-    turn = 0
+    turn = 1
+
+
+# TODO normalize evaluations
+
+
 
 
