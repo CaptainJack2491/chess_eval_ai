@@ -7,7 +7,7 @@
 
 # Hyprparameters
 
-dict = {'p':0.05,'n':0.15,'b':0.15,'r':0.25,'q':0.45,'k':1,0:0}
+values:dict = {'p':0.05,'n':0.15,'b':0.15,'r':0.25,'q':0.45,'k':1,0:0}
 
 
 def split_fen(fen:str) -> list[str]:
@@ -62,8 +62,8 @@ def split_array(fen:str) -> list[list]:
     # print(fen_black)
     # print(fen_white)
 
-    transformed_black = list(map(dict.get,fen_black))
-    transformed_white = list(map(dict.get,fen_white))
+    transformed_black = list(map(values.get,fen_black))
+    transformed_white = list(map(values.get,fen_white))
     return [transformed_black, transformed_white]
 
 
@@ -71,6 +71,7 @@ def split_array(fen:str) -> list[list]:
 test_fen = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1"
 fen = split_fen(test_fen)
 position = split_array(fen_to_array(fen[0]))
+print(position)
 
 turn:int = 0
 if fen[1] == 'b':
