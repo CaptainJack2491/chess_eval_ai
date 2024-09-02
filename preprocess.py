@@ -1,6 +1,7 @@
-# import numpy as np
 # import pandas as pd
-# from pandas import DataFrame
+from pandas import DataFrame, Series
+from sklearn.preprocessing import RobustScaler
+
 # import tensorflow as tf
 
 # data:DataFrame = pd.read_csv("./dataset/random_evals.csv")
@@ -67,11 +68,28 @@ def split_array(fen:str) -> list[list]:
     return [transformed_black, transformed_white]
 
 
+def normalize_eval(data:DataFrame) -> DataFrame|Series|None:
+    # Drop rows that contain the '#' symbol in the 'Evaluation' column
+    data_cleaned = data[~data['Evaluation'].str.contains('#')].copy()
+
+    # Convert the remaining values in the 'Evaluation' column to integers
+    data_cleaned.loc[:, 'Evaluation'] = data_cleaned['Evaluation'].astype(int)
+
+    scaler = RobustScaler()
+    data_cleaned['Evaluation_normalized'] = scaler.fit_transform(data_cleaned[['Evaluation']])
+
+    return data_cleaned
+
+
+def FEN_to_array(fen:str) -> list:
+    return split_array(fen_to_array(split_fen(fen)[0]))
+
 
 test_fen = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1"
 fen = split_fen(test_fen)
 position = split_array(fen_to_array(fen[0]))
 print(position)
+print(FEN_to_array(test_fen))
 
 turn:int = 0
 if fen[1] == 'b':

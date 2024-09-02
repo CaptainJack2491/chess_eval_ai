@@ -1,22 +1,13 @@
 import pandas as pd
+import numpy as np
+import preprocess as pp
 
-data = pd.read_csv("./dataset/chessData.csv")
+data:pd.DataFrame = pd.read_csv("./dataset/chessData.csv")
 
-def is_mate(fen):
-    if '#' in fen:
-        return 1
-    else:
-        return 0
+# normalize eval
+normalized_data = pp.normalize_eval(data)
 
-data['is_mate'] = data.Evaluation.apply(is_mate)
+final_data = np.array(normalized_data['FEN'].apply(pp.FEN_to_arry))
 
-def has_hash(fen):
-    if '#' in fen:
-        fen.replace('#','')
-    else:
-        return fen
-
-data['Evaluation'] = data.Evaluation.apply(has_hash)
-data.to_csv('chessData.csv', index=False)
-
-print(data)
+print(normalized_data.shape)
+print(final_data.shape)

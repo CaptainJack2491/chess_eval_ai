@@ -2,4 +2,5 @@
 env/
 .vscode
 dataset/
-test.ipynb
+.ipynb_checkpoints/
+__pycache__/
